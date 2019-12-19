@@ -1,15 +1,20 @@
 function Y = iofft3(X)
-% IOFFT Inverse discrete octonion Fourier transform
+% IOFFT3 Inverse discrete octonion Fourier transform calculated with FFT 
+% algorithm
 % 
-% This function calculates the fast inverse octonion Fourier transform of
-% 3-dimensional matrix X. 
+% This function calculates the inverse discrete octonion Fourier transform 
+% of 3-dimensional octonion-valued matrix X using classical FFT algorithm.
+% It uses the convention that zero frequencies appear on the first 
+% coordinates of the matrix. In order to shift the zero frequency back to
+% the first coordinates, the ifftshift function should be applied.
 % 
-% See also: OFFT
+% See also: OFFT3, IFFTSHIFT
 
 narginchk(1, 1), nargoutchk(0, 1)
 
 if ~isreal(X)
-    error('The transformed matrix must have components that are real octonions.');
+    error(['The transformed matrix must have components that are ', ...
+        'real octonions.']);
 end
 
 if ndims(X) ~= 3
